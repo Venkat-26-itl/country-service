@@ -59,10 +59,13 @@ export class CountryService {
     }
   }
 
-  async fetchWeatherData() {
+  async fetchWeatherData(userId: number) {
     try{
       const countries = await this.countryModel.findAll({
         attributes: ['name', 'latitude', 'longitude'],
+        where: {
+          createdBy: userId,
+        },
       });
   
       const apiKey = process.env.WEATHER_API_KEY;

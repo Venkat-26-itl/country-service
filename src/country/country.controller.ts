@@ -26,8 +26,8 @@ export class CountryController {
   }
 
   @Get('weather')
-  async getLatestWeather() {
-    const weatherData = await this.countryService.fetchWeatherData();
+  async getLatestWeather(@Query('userId') userId: string) {
+    const weatherData = await this.countryService.fetchWeatherData(parseInt(userId));
     return { success: true, data: weatherData };
   }
 
